@@ -28,7 +28,7 @@ struct RecipeDetailView: View {
     }
 
     var body: some View {
-    
+        ScrollView(showsIndicators: false){
         VStack() {
             
             getGradientImage(image: dataModel.recipe.image ?? Image("sample"))
@@ -41,11 +41,13 @@ struct RecipeDetailView: View {
                     .padding(.leading,20)
                 
                 Spacer()
-            }
+            }.padding(.bottom,8)
+                .padding(.top,60)
             
-            ScrollView(showsIndicators: false){
+            
                 VStack{
                     RecipeIngredientBox(ingredients: dataModel.recipe.ingredientList ?? TestData.ingredients)
+                    
                     RecipeHowBox(recipeList: dataModel.recipe.recipeList ?? TestData.recipeList1)
                 
                 }.background(
@@ -57,12 +59,13 @@ struct RecipeDetailView: View {
                         }
                     )
 
-            }.frame(
-                maxHeight: scrollViewContentSize.height
-            )
+          
             
-            Spacer()
-        }//.navigationBarTitle(Text("The Title"), displayMode: .inline)
+           
+        }
+            Spacer(minLength: 300)
+        }.ignoresSafeArea()
+            //.navigationBarTitle(Text("The Title"), displayMode: .inline)
     }
 
 }

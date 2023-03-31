@@ -21,9 +21,10 @@ struct selectItemInFridge: View {
            Spacer()
                 .padding(.bottom, 20)
             
-            selectFridgeListView(selectedItem : $selectedIngredient)
-                .padding(.horizontal,20)
-               
+            ScrollView(showsIndicators: false){
+                selectFridgeListView(selectedItem : $selectedIngredient)
+                    .padding(.horizontal,20)
+            }
             
             if let item = selectedIngredient{
                 
