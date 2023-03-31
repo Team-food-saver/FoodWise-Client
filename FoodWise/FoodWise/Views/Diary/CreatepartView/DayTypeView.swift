@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DayTypeView: View {
     
-    @Binding var selectedMeal: MealType? //= MealType.breakfast
+    @Binding var selectedMeal: MealType //= MealType.breakfast
 
     
     var body: some View {

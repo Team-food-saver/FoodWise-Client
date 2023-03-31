@@ -10,16 +10,72 @@ import SwiftUI
 struct CreateDiaryView: View {
     
     @State var newDiary : DayDiary = DayDiary(menu: "")
-    @State var mealType : MealType?
+    @State var mealType : MealType = MealType.no
+    @State var menuImg : UIImage?
+    @State var menuName : String = ""
+    @State var menuPrediction : defaultBool = defaultBool.mdefault
+    @State var isSubmitted : Bool = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
-    
+    @StateObject var weekStore = WeekStore()
+    @StateObject var diaryViewModel = DairyViewModel()
     var body: some View {
         NavigationView(){
             
-            VStack{
-                DayTypeView(selectedMeal: $mealType)
+            ScrollView(showsIndicators: false){
+                
+                VStack(){
+                    
+                    if menuPrediction == defaultBool.mtrue ||  isSubmitted {
+                        
+                        deleteIngredientsView()
+                         
+                       
+                    }
+                    
+                    if menuPrediction == defaultBool.mfalse {
+                        getNameFromUser(menuName: $menuName,isSubmitted: $isSubmitted)
+                    }
+                    
+                    if menuImg != nil {
+                        HStack{
+                            getMenuName(menuName: $menuName, selectedAsw: $menuPrediction)
+                                .padding(.bottom,32)
+                                .padding(.leading,25)
+                            Spacer()
+                        }
+                        
+                    }
+                    
+                    if mealType != MealType.no {
+                        
+                        getMenuPicture(selectedImage: $menuImg)
+                        
+                    }
+                    
+                    DayTypeView(selectedMeal: $mealType)
+                }
             }
+        }.toolbar{
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    self.presentationMode.wrappedValue.dismiss()
+                    newDiary.date = weekStore.currentDate
+                    newDiary.daytype = mealType
+                    newDiary.image = Image(uiImage: menuImg!)
+                    diaryViewModel.diaryList.append(newDiary)
+                } label: {
+                    Text("완료").foregroundColor( menuPrediction == defaultBool.mtrue ||  isSubmitted  ? Color.myprimary : .white)
+                       .disabled(!( menuPrediction == defaultBool.mtrue ||  isSubmitted ))
+                }
+
+                    
+                }
         }.navigationTitle(Text("식단 추가"))
+           
+        
     }
 }
 
@@ -39,7 +95,7 @@ struct QuestionHeader : View {
             Text(title)
                 .title2()
             
-           
+            
         }.padding(.bottom,16)
     }
 }

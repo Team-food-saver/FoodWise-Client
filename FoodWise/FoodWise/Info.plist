@@ -2,17 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>카메라에 접근을 허용해주세요</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Pretendard/Pretendard-Regular.ttf</string>
-		<string>GmarketSansTTF/GmarketSansTTFMedium.ttf</string>
-		<string>GmarketSansTTF/GmarketSansTTFBold.ttf</string>
-		<string>GmarketSansTTF/GmarketSansTTFLight.ttf</string>
-	</array>
-	<key>GIDClientID</key>
-	<string>554323776297-g9tflklfd6hudsuo1mg0guall73rtbh4.apps.googleusercontent.com</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -22,9 +11,25 @@
 			</array>
 		</dict>
 	</array>
+	<key>GIDClientID</key>
+	<string>554323776297-g9tflklfd6hudsuo1mg0guall73rtbh4.apps.googleusercontent.com</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Pretendard/Pretendard-Regular.ttf</string>
+		<string>GmarketSansTTF/GmarketSansTTFMedium.ttf</string>
+		<string>GmarketSansTTF/GmarketSansTTFBold.ttf</string>
+		<string>GmarketSansTTF/GmarketSansTTFLight.ttf</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchScreenBackground</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
 		<true/>
 	</dict>
 </dict>

@@ -42,15 +42,22 @@ struct RecipeBox : View {
                
                 HStack(spacing: 3.06) {
                     
-                    Toggle(isOn: $heart, label: {
+                    Button {
+                        heart = !heart
+                        if(heart)
+                        { dataModel.recipe.likeCnt! += 1}
+                        else { dataModel.recipe.likeCnt! -= 1 }
+                        
+                    } label: {
                         Label{ } icon: {
                             Image(systemName: "heart.fill").font(.system(size: 13))
-                        }
-                            
-                    })
-                    .frame(width: 12, height: 10)
-                    .toggleStyle(ButtonToggleStyle())
-                    .foregroundColor(.red)
+                            }
+                        .frame(width: 12, height: 10)
+                        //.toggleStyle(ButtonToggleStyle())
+                        .foregroundColor(heart ? .myprimary : .mygray3)
+                    }
+
+                   
                 
                     if let cnt = dataModel.recipe.likeCnt{
                         Text("\(cnt)")

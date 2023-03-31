@@ -13,21 +13,30 @@ struct MainRecipeView : View {
     
     var body : some View {
         
-//        UIFont.familyNames.sorted().forEach { familyName in
-//            print("*** \(familyName) ***")
-//            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-//                print("\(fontName)")
-//            }
-//            print("---------------------")
-//        }
-//
+        //        UIFont.familyNames.sorted().forEach { familyName in
+        //            print("*** \(familyName) ***")
+        //            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
+        //                print("\(fontName)")
+        //            }
+        //            print("---------------------")
+        //        }
+        //
         
         return
+            NavigationView{
             ScrollView(showsIndicators : false){
                 VStack(alignment: .leading){
                     HotRecipeView()
+//                    List {
+//                         ImageSlider()
+//                            // .frame(height: 467)
+//                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+//                             .listRowSeparator(.hidden)
+//                     }
+//                     .listStyle(.plain)
+//                     .edgesIgnoringSafeArea(.all)
                         .frame(height: 467)
-                   
+                    
                     
                     Group{
                         
@@ -77,17 +86,19 @@ struct MainRecipeView : View {
                             }
                         }
                         
-                       // Spacer(minLength: 40)
+                        // Spacer(minLength: 40)
                     }.padding(.leading,20)
                     
                     Spacer(minLength: 150)
                 }
-             
+                
             }.ignoresSafeArea()
-            .onAppear{
-                dataModel.fetch()
-            }
+                .onAppear{
+                    dataModel.fetch()
+                }
             
+            
+        }
         
     }
 }

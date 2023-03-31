@@ -19,8 +19,11 @@ struct LoginView: View {
         
         HStack{
             Spacer()
-            VStack{
+            VStack(alignment: .leading){
                 Text("FoodWise와 함께 현명하게 식재료 관리할 준비되셨나요?")
+                    .subTitle1()
+                    .lineSpacing(18)
+                    .padding()
                 
 //               Button("Google로 로그인", action: authViewModel.signIn)
                 

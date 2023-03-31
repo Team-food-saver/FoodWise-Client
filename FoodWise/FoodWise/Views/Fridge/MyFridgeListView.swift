@@ -13,7 +13,7 @@ struct MyFridgeListView : View{
                                   "해산물": "seafood","과일": "fruit","유제품": "dairy","채소": "vegetable","기타": "etc"]
     
     
-    var inventory = ["육류" : TestData.ingredients,"해산물": TestData.ingredients]
+    var inventory = ["육류" : TestData.ingredients,"해산물": TestData.ingredients1, "과일": TestData.ingredients2,"유제품": TestData.ingredients3,"채소": TestData.ingredients4,"기타": TestData.ingredients5]
 
     
    
@@ -22,8 +22,13 @@ struct MyFridgeListView : View{
         
         var categoryIngreList = [AnyView]()
         
-        inventory.forEach{ key,values in
+        let keys = ["육류",
+                    "해산물","과일","유제품","채소","기타"]
+        
+        keys.forEach{ key in
 
+            let values = inventory[key]!
+            
             let icon = fridgeSectionImageDict[key]
            
             let categoryHeader = HStack{

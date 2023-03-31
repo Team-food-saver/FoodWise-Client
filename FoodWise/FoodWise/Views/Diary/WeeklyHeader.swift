@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct WeeklyHeader: View {
-    @StateObject var weekStore = WeekStore()
+
+    
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
-
+    @StateObject var weekStore = WeekStore()
+    @StateObject var vm = DairyViewModel()
+    
     var body: some View {
         
-        VStack(){
+       
+        let weeklyDiaryCount = weekStore.weekDiaryIndex(list: vm.diaryList)
+    
+       return VStack(){
             
             HStack{
                 
@@ -30,7 +36,7 @@ struct WeeklyHeader: View {
                     Image("leftArrow").resizable().frame(width: 12, height: 22)
                 }
                 
-                Text(weekStore.dateToString(date: weekStore.currentDate, format: "YYYY년 MM월") + " \(weekStore.numberOfWeekInMonth(weekStore.currentDate).description)주차" )
+                Text(weekStore.dateToString(date: weekStore.currentDate, format: "YYYY년 MM월") + " \(weekStore.numberOfWeekInMonth(weekStore.currentDate).description)주차" ).title3()
                 
                 Button(){
                     draggingItem = snappedItem - 1
@@ -60,9 +66,10 @@ struct WeeklyHeader: View {
                                     
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .frame(width: 32,height: 32)
-                                        .foregroundColor(.mygray2)
+                                        .foregroundColor(weeklyDiaryCount[index] > 0 ? .myprimary : .mygray2)
                                         .overlay(){
-                                            Text("3")
+                                            weeklyDiaryCount[index] > 0 ?
+                                            Text("\(weeklyDiaryCount[index])").title3() : nil
                                         }
                                     
                                     Text(weekStore.dateToString(date: week.date[index], format: "d"))

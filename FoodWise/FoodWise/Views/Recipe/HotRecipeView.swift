@@ -7,16 +7,14 @@
 
 //import ImageSlidesShow
 import SwiftUI
-import ImageSlideshow
 import UIKit
 
 struct HotRecipeView: View {
     
-    var slideshow = ImageSlideshow()
     
     var body: some View {
         
-       NavigationView {
+        //   NavigationView {
             
                List {
                     ImageSlider()
@@ -26,7 +24,9 @@ struct HotRecipeView: View {
                 }
                 .listStyle(.plain)
                 .edgesIgnoringSafeArea(.all)
-        }}
+    //    }
+    
+}
 }
 
 struct ImageSlider: View {

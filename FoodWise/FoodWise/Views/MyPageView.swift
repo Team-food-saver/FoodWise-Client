@@ -20,6 +20,10 @@ struct MyPageView : View {
     var body: some View {
         
         VStack{
+            
+            Text("마이 페이지")
+                .title3()
+            
             if let userProfile = user?.profile{
                 
                 HStack(alignment: .top) {
@@ -36,6 +40,7 @@ struct MyPageView : View {
             
                 }.padding()
             }
+                //Spacer()
             }
         
     }

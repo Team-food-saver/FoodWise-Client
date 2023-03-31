@@ -78,6 +78,24 @@ class WeekStore : ObservableObject {
         }
     }
     
+    func weekDiaryIndex(list : [DayDiary]) -> [Int]{
+        
+        var counts : [Int] = []
+        let today = currentDate
+        var calendar = Calendar(identifier: .gregorian)
+    
+        calendar.firstWeekday = 7
+        let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))!
+        
+        (1...7).forEach{ day in
+            if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeek){
+                counts.append(list.filter{calendar.isDate($0.date! , equalTo: weekday, toGranularity: .day)}.count)
+            }
+        }
+        
+        return counts
+    }
+    
     func isToday(date:Date)->Bool{
         let calendar = Calendar.current
         return calendar.isDate(currentDate, inSameDayAs: date)

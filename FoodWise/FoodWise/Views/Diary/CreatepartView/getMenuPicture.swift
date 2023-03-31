@@ -10,59 +10,60 @@ import SwiftUI
 
 struct getMenuPicture: View {
     
-    @State private var image: Image?
     
     
     @State private var showActionSheet = false
     
     
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    @State private var selectedImage: UIImage?
+    @Binding var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
     
     var body: some View {
         
-        
-        VStack(alignment: .leading){
+        withAnimation{
             
-            HStack{
-                QuestionHeader(title: "어떤 음식을 드셨나요?", order: 2)
-            }
-            Button(action: {
-                self.showActionSheet = true
-            }) {
+            VStack(alignment: .leading){
                 
-                
-                
-                if selectedImage != nil{
-                    Image(uiImage: selectedImage!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 350, height: 173)
-                } else {
-                    Image("photo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 350, height: 173)
+                HStack{
+                    QuestionHeader(title: "어떤 음식을 드셨나요?", order: 2)
                 }
-                
+                Button(action: {
+                    self.showActionSheet = true
+                }) {
+                    
+                    
+                    
+                    if selectedImage != nil{
+                        Image(uiImage: selectedImage!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 350, height: 173)
+                    } else {
+                        Image("photo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 350, height: 173)
+                    }
+                    
+                }
             }
-        }
-        .actionSheet(isPresented: $showActionSheet) {
-            ActionSheet(title: Text("음식 사진을 어떻게 가져올까요?"), buttons: [
-                .default(Text("촬영하기"), action: {
-                    self.isImagePickerDisplay = true
-                    self.sourceType = .camera
-                }),
-                .default(Text("사진첩에서 고르기"), action: {
-                    self.isImagePickerDisplay = true
-                    self.sourceType = .photoLibrary
-                }),
-                .cancel()
-            ])
-        }
-        .sheet(isPresented: self.$isImagePickerDisplay) {
-            ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+            .actionSheet(isPresented: $showActionSheet) {
+                ActionSheet(title: Text("음식 사진을 어떻게 가져올까요?"), buttons: [
+                    .default(Text("촬영하기"), action: {
+                        self.isImagePickerDisplay = true
+                        self.sourceType = .camera
+                    }),
+                    .default(Text("사진첩에서 고르기"), action: {
+                        self.isImagePickerDisplay = true
+                        self.sourceType = .photoLibrary
+                    }),
+                    .cancel()
+                ])
+            }
+            .sheet(isPresented: self.$isImagePickerDisplay) {
+                ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+            }
         }
     }
 }
@@ -106,8 +107,8 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
 }
 
-struct getMenuPicture_Previews: PreviewProvider {
-    static var previews: some View {
-        getMenuPicture()
-    }
-}
+//struct getMenuPicture_Previews: PreviewProvider {
+//    static var previews: some View {
+//        //getMenuPicture()
+//    }
+//}
