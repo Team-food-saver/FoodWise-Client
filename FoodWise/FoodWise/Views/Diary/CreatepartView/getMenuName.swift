@@ -15,12 +15,14 @@ enum defaultBool : Int {
 
 struct getMenuName: View {
     
-    @Binding var menuName : String
+    @Binding var menuName : String 
     @Binding var selectedAsw: defaultBool //= defaultBool.mdefault
-    let predictedName : String = "김치찌개"// model prediction이 들어갈 자리
+    let predictedName : String = "애호박전"// model prediction이 들어갈 자리
     
     
     var body: some View {
+        
+        menuName = predictedName
         
         return VStack(alignment: .leading){
             
@@ -34,6 +36,8 @@ struct getMenuName: View {
                 
             }
             .frame(width:232,alignment: .leading)
+           
+            
             .pickerStyle(SegmentedPickerStyle())
             .onAppear(){
                 UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.myprimary)
@@ -55,27 +59,27 @@ struct getNameFromUser: View {
     
     var body: some View {
         
-       // menuName = ""
+       menuName = ""
         
        return VStack(alignment: .leading){
             QuestionHeader(title: "이름을 알려주세요", order: 4)
             
             RoundedRectangle(cornerRadius: 8)
                 .fill(Color.mygray2)
-                .frame(width: 350, height: 49)
+                .frame(height: 49)
                 .overlay(content: {
                     TextField("요리명을 입력하세요", text: self.$menuName)
                         .textFieldStyle(PlainTextFieldStyle())
                         .multilineTextAlignment(.center)
                         //.frame(alignment: .center)
-                        .frame(width: 150, height: 49)
+                        .frame(width: 150, height: 49)//width: 150,
                         .onSubmit {
                             isSubmitted = true
                         }
                 })
             
             
-        }.padding(.bottom,32)
+        }
     }
 }
 

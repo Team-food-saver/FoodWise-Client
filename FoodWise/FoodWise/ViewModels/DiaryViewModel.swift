@@ -9,9 +9,13 @@ import Foundation
 
 class DairyViewModel : ObservableObject {
     
-    @Published var diaryList : [DayDiary] = TestData.diaryList
+    @Published var diaryList : [DayDiary] = []
     
     init(){
-       
+        self.diaryList += TestData.diaryList
+    }
+    
+    func appendList(item: DayDiary) {
+        self.diaryList.append(item)
     }
 }

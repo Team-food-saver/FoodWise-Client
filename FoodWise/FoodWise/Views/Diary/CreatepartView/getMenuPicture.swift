@@ -27,6 +27,7 @@ struct getMenuPicture: View {
                 
                 HStack{
                     QuestionHeader(title: "어떤 음식을 드셨나요?", order: 2)
+                        
                 }
                 Button(action: {
                     self.showActionSheet = true
@@ -38,16 +39,18 @@ struct getMenuPicture: View {
                         Image(uiImage: selectedImage!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 350, height: 173)
+                            .frame(width: UIScreen.main.bounds.width-40)
+                            .frame(height: 173)
                     } else {
                         Image("photo")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 350, height: 173)
+                            .frame(width: UIScreen.main.bounds.width-40)
+                            .frame(height: 173)
                     }
                     
                 }
-            }
+            }.frame(width: UIScreen.main.bounds.width-40)
             .actionSheet(isPresented: $showActionSheet) {
                 ActionSheet(title: Text("음식 사진을 어떻게 가져올까요?"), buttons: [
                     .default(Text("촬영하기"), action: {

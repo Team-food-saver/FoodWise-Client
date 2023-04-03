@@ -22,6 +22,7 @@
 		CD15EBDD29D6B5020014FAB4 /* DiaryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15EBDC29D6B5020014FAB4 /* DiaryRowView.swift */; };
 		CD15EBDF29D6E8CB0014FAB4 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15EBDE29D6E8CB0014FAB4 /* SplashScreen.swift */; };
 		CD15EBE129D6EC290014FAB4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD15EBE029D6EC290014FAB4 /* Launch Screen.storyboard */; };
+		CD15EBE329DB19650014FAB4 /* FridgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15EBE229DB19650014FAB4 /* FridgeViewModel.swift */; };
 		CD1F26BE29B67260007ABC0C /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1F26BD29B67260007ABC0C /* CustomTabView.swift */; };
 		CD54B57D299F8E6400D932B0 /* FoodWiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54B57C299F8E6400D932B0 /* FoodWiseApp.swift */; };
 		CD54B57F299F8E6400D932B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54B57E299F8E6400D932B0 /* ContentView.swift */; };
@@ -92,6 +93,7 @@
 		CD15EBDC29D6B5020014FAB4 /* DiaryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRowView.swift; sourceTree = "<group>"; };
 		CD15EBDE29D6E8CB0014FAB4 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		CD15EBE029D6EC290014FAB4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		CD15EBE229DB19650014FAB4 /* FridgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeViewModel.swift; sourceTree = "<group>"; };
 		CD1F26BD29B67260007ABC0C /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		CD54B579299F8E6400D932B0 /* FoodWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodWise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD54B57C299F8E6400D932B0 /* FoodWiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodWiseApp.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				CD54B5AD299F9BFD00D932B0 /* AuthenticationViewModel.swift */,
 				CD15EBDA29D63FA50014FAB4 /* DiaryViewModel.swift */,
+				CD15EBE229DB19650014FAB4 /* FridgeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				CD54B5B5299F9E0900D932B0 /* GoogleSignInAuthenticator.swift in Sources */,
 				CD54B57D299F8E6400D932B0 /* FoodWiseApp.swift in Sources */,
 				CDDA8EEF29C719AC00663A3B /* WeekValue.swift in Sources */,
+				CD15EBE329DB19650014FAB4 /* FridgeViewModel.swift in Sources */,
 				CD13D87729A63F4000F47795 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

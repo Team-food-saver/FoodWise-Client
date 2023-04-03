@@ -16,6 +16,13 @@ struct addIngredientView: View {
     @State private var searchText = ""
     @State private var isSearchEdting = false
     @Binding var showModal : Bool
+    @ObservedObject var vm : FridgeViewModel
+    
+    init(showModal: Binding<Bool>, vm: FridgeViewModel)
+    {
+        self._showModal = showModal
+        self.vm = vm
+    }
     
     var body: some View {
         
@@ -31,7 +38,7 @@ struct addIngredientView: View {
             if(!searchText.isEmpty && isSearchEdting ){
                 ScrollView(.horizontal){
                     HStack{
-                        ForEach(TestData.ingredients.filter({ searchText.isEmpty ? false : $0.name.contains(searchText) })) { item in
+                        ForEach(TestData.ingredientsSearch.filter({ searchText.isEmpty ? false : $0.name.contains(searchText) })) { item in
                             
                             Button{
                                
@@ -91,7 +98,7 @@ struct addIngredientView: View {
                             .padding()
                         Spacer()
                         
-                        DatePicker(selection: $expiredDate, in: expiredDate..., displayedComponents: [.date]) {}
+                        DatePicker(selection: $expiredDate, in: Date()..., displayedComponents: [.date]) {}
                             .padding()
                             
                     }
@@ -110,7 +117,10 @@ struct addIngredientView: View {
                 
                 Spacer()
                 
-                Button{showModal = false} label: {
+                Button{showModal = false
+                    vm.appendList(item: Ingredient(id: Int.random(in: 10..<100),name: searchText,amount: Int(amount),expiredDate: expiredDate))
+                    
+                } label: {
                     Text("등록")
                         .foregroundColor(.black)
                         .frame(width: 128,height: 49)
@@ -133,9 +143,9 @@ struct addIngredientView: View {
     }
 }
 
-struct addIngredientView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        addIngredientView(showModal: .constant(true))
-    }
-}
+//struct addIngredientView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        addIngredientView(showModal: .constant(true))
+//    }
+//}

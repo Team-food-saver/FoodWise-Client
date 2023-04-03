@@ -12,14 +12,19 @@ struct CreateDiaryView: View {
     @State var newDiary : DayDiary = DayDiary(menu: "")
     @State var mealType : MealType = MealType.no
     @State var menuImg : UIImage?
-    @State var menuName : String = ""
+    @State var menuName : String = "애호박전"
     @State var menuPrediction : defaultBool = defaultBool.mdefault
     @State var isSubmitted : Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     
     @StateObject var weekStore = WeekStore()
-    @StateObject var diaryViewModel = DairyViewModel()
+    @ObservedObject var diaryViewModel = DairyViewModel()
+   
+    init(vm: DairyViewModel){
+        diaryViewModel = vm
+    }
+    
     var body: some View {
         NavigationView(){
             
@@ -27,34 +32,37 @@ struct CreateDiaryView: View {
                 
                 VStack(){
                     
-                    if menuPrediction == defaultBool.mtrue ||  isSubmitted {
-                        
-                        deleteIngredientsView()
-                         
+                    if menuPrediction == defaultBool.mtrue ||  isSubmitted   {
+                    
+                        deleteIngredientsView(index : isSubmitted ? 5 : 4  )
+                            .padding(20)
                        
                     }
                     
-                    if menuPrediction == defaultBool.mfalse {
+                    if menuPrediction == defaultBool.mfalse    {
+                   
                         getNameFromUser(menuName: $menuName,isSubmitted: $isSubmitted)
+                            .padding(.horizontal,20)
                     }
                     
                     if menuImg != nil {
                         HStack{
                             getMenuName(menuName: $menuName, selectedAsw: $menuPrediction)
-                                .padding(.bottom,32)
-                                .padding(.leading,25)
+                                .padding(20)
                             Spacer()
                         }
                         
                     }
                     
-                    if mealType != MealType.no {
+                    if mealType != MealType.no   {
                         
                         getMenuPicture(selectedImage: $menuImg)
-                        
+                            .padding(.horizontal,20)
+                      
                     }
                     
                     DayTypeView(selectedMeal: $mealType)
+                        .padding(20)
                 }
             }
         }.toolbar{
@@ -62,10 +70,11 @@ struct CreateDiaryView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     self.presentationMode.wrappedValue.dismiss()
+                    self.newDiary.menu = menuName
                     newDiary.date = weekStore.currentDate
                     newDiary.daytype = mealType
                     newDiary.image = Image(uiImage: menuImg!)
-                    diaryViewModel.diaryList.append(newDiary)
+                    diaryViewModel.appendList(item: newDiary)
                 } label: {
                     Text("완료").foregroundColor( menuPrediction == defaultBool.mtrue ||  isSubmitted  ? Color.myprimary : .white)
                        .disabled(!( menuPrediction == defaultBool.mtrue ||  isSubmitted ))
@@ -100,8 +109,8 @@ struct QuestionHeader : View {
     }
 }
 
-struct CreateDiaryView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateDiaryView()
-    }
-}
+//struct CreateDiaryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//      //  CreateDiaryView()
+//    }
+//}

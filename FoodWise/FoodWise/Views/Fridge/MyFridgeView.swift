@@ -12,7 +12,7 @@ struct MyFridgeView: View {
    
     let attributedText = Text("지난 달에 ") + Text("100g").foregroundColor(Color.myprimary).bold() + Text("의\n식재료를 낭비했어요")
     @State var showModal = false
-    
+    @ObservedObject var vm = FridgeViewModel()
 
     var body: some View {
         VStack(alignment: .leading){
@@ -20,7 +20,7 @@ struct MyFridgeView: View {
             ZStack(){
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.mygray2)
-                .frame(width: 350, height: 87)
+                .frame(width:  UIScreen.main.bounds.width-40 ,height: 87)
 
                 HStack{
                     Image("leftover")
@@ -43,12 +43,12 @@ struct MyFridgeView: View {
                 
             ZStack(alignment: .bottom){
                 ScrollView(showsIndicators: false){
-                    MyFridgeListView()
+                    MyFridgeListView(vm:vm)
                 }
                 
                 Spacer()
                 
-                HStack{
+                HStack(spacing: 0){
                     Spacer()
                     
                     Button(action: { showModal = true } ){
@@ -59,9 +59,10 @@ struct MyFridgeView: View {
                                 .font(.system(size: 29, weight: .semibold))
                                 .foregroundColor(.black),alignment: .center)
                             .padding(.bottom,25)
+                           
                     }.sheet(isPresented: $showModal){
                         
-                        addIngredientView(showModal: $showModal)
+                        addIngredientView(showModal: $showModal, vm: vm)
                             .presentationDetents([.fraction(0.5), .large])
                     }
                 }

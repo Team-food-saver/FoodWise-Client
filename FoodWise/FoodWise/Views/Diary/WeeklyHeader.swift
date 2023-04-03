@@ -12,14 +12,22 @@ struct WeeklyHeader: View {
     
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
-    @StateObject var weekStore = WeekStore()
-    @StateObject var vm = DairyViewModel()
+    @ObservedObject var weekStore = WeekStore()
+    @ObservedObject var vm = DairyViewModel()
+    
+    
+    init(vm : DairyViewModel,weekStore : WeekStore){
+        self.vm = vm
+        self.weekStore = weekStore
+      
+    }
     
     var body: some View {
         
        
-        let weeklyDiaryCount = weekStore.weekDiaryIndex(list: vm.diaryList)
-    
+       let weeklyDiaryCount = weekStore.weekDiaryIndex(list: vm.diaryList)
+      
+        
        return VStack(){
             
             HStack{
@@ -82,6 +90,12 @@ struct WeeklyHeader: View {
                                     // Updating Current Day
                                     weekStore.currentDate = week.date[index]
                                 }
+                                .onAppear{
+                                    if weekStore.isToday(date: week.date[index]) {
+                                        weekStore.currentDate = week.date[index]
+                                    }
+                                    
+                                }
                             }
                         }
                         .frame(width: UIScreen.main.bounds.width)
@@ -130,9 +144,9 @@ struct WeeklyHeader: View {
     }
     
 }
-
-struct WeeklyHeader_Previews: PreviewProvider {
-    static var previews: some View {
-        WeeklyHeader()
-    }
-}
+//
+//struct WeeklyHeader_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WeeklyHeader()
+//    }
+//}

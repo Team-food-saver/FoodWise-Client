@@ -21,7 +21,7 @@ struct IngredientListRow: View {
       
         return HStack {
             Text(item.name)
-                .frame(width:130,alignment: .leading)
+                .frame(width:100,alignment: .leading)
                 .padding(.leading,20)
 
             Spacer()
@@ -53,7 +53,7 @@ struct IngredientListRow: View {
             }.tint(.red)
 
         }
-        .frame(width: 350, height: 49)
+        .frame(width: UIScreen.main.bounds.width-40 , height: 49)
         .background(isSelected ? .myprimary : Color.mygray2)
             .cornerRadius(6)
                     

@@ -12,11 +12,15 @@ struct deleteIngredientsView: View {
     @State private var showModal : Bool = false
     @State private var deletionlist : [Ingredient] = [] //= TestData.ingredients
  
+    let index : Int
     
+    init(index: Int){
+        self.index = index
+    }
     var body: some View {
         
         VStack(alignment: .leading) {
-            QuestionHeader(title: "냉장고 재고를 정리하세요!", order: 4)
+            QuestionHeader(title: "냉장고 재고를 정리하세요!", order: index)
            
             VStack{
                 
@@ -52,17 +56,17 @@ struct deleteIngredientsView: View {
                         .presentationDetents([.fraction(0.9), .large])
                 }
 
-            }.frame(width: 350).padding(.vertical, 24).background(Color.mygray2).cornerRadius(10)
+            }.frame(width: UIScreen.main.bounds.width-40).padding(.vertical, 24).background(Color.mygray2).cornerRadius(10)
                 
-        }.padding(20)
+        }
       
         
     }
     
 }
 
-struct deleteIngredientsView_Previews: PreviewProvider {
-    static var previews: some View {
-        deleteIngredientsView()
-    }
-}
+//struct deleteIngredientsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        deleteIngredientsView()
+//    }
+//}

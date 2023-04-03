@@ -15,6 +15,12 @@ struct MyFridgeListView : View{
     
     var inventory = ["육류" : TestData.ingredients,"해산물": TestData.ingredients1, "과일": TestData.ingredients2,"유제품": TestData.ingredients3,"채소": TestData.ingredients4,"기타": TestData.ingredients5]
 
+    var vm = FridgeViewModel()
+    
+    init(vm: FridgeViewModel){
+        self.vm = vm
+        inventory = vm.FridgeList
+    }
     
    
     var body: some View {

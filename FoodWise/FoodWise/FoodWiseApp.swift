@@ -43,9 +43,15 @@ struct TestData {
     static let hotrecipe = [recipe]
     static let recipeList1 : [RecipeHow] = [RecipeHow(id: 1, content: "면을 삶아줍니다."), RecipeHow(id: 2, content: "22")]
     static var ingredient = Ingredient(id:  1, name:"돼지고기",amount: 800, expiredDate: Date())
+    
+    static var ingredientsSearch : [Ingredient] =  [TestData.ingredient,
+                                              Ingredient(id: 2, name:"양고기",amount: 300, expiredDate: Date()),
+                                                    Ingredient(id: 2, name:"소고기",amount: 300, expiredDate: Date())
+                                              ]
     static var ingredients : [Ingredient] =  [TestData.ingredient,
                                               Ingredient(id: 2, name:"양고기",amount: 300, expiredDate: Date()),
                                               ]
+    
     static var ingredients1 : [Ingredient] =  [Ingredient(id: 3, name:"새우",amount: 800, expiredDate: Date())
                                               ]
     static var ingredients2 : [Ingredient] =  [Ingredient(id: 4, name:"파인애플",amount: 800, expiredDate: Date())

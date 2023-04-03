@@ -9,31 +9,33 @@ import SwiftUI
 
 struct DiaryView: View {
     
-    @StateObject var vm = DairyViewModel()
-    @StateObject var weekStore = WeekStore()
+    @ObservedObject var vm = DairyViewModel()
+    @ObservedObject var weekStore = WeekStore()
+
+    
     
     var body: some View {
         let calendar = Calendar.current
-        let diaryList = vm.diaryList.filter{calendar.isDate($0.date! , equalTo:  weekStore.currentDate, toGranularity: .day)}
        
         return NavigationView{
             
             
             VStack(){
-                WeeklyHeader()
+                WeeklyHeader(vm:vm, weekStore: weekStore)
                     .padding(.top,38)
                     .padding(.bottom,24)
                     .frame(height: UIScreen.main.bounds.height*0.2)
                    // .background(.black)
                     
-                if diaryList.count == 0{
+                if vm.diaryList.count == 0 {
                     Spacer()
                     HStack{
                         
                         Text("식단 일지를 추가하세요!")
                             .subTitle1()
                             .frame(alignment: .center)
-                            .padding(.leading,125)
+                            .padding(.horizontal)
+                          //  .padding(.leading,125)
                     }
                     Spacer()
                 }
@@ -42,24 +44,28 @@ struct DiaryView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                   
-                        ScrollView{
+                    ScrollView(showsIndicators: false){
                         VStack{
-                            DiaryRowView(currentDayDiaryList:diaryList)
+                            DiaryRowView(currentDayDiaryList:vm.diaryList.filter{calendar.isDate($0.date! , equalTo:  weekStore.currentDate, toGranularity: .day)})
                             Spacer(minLength: 100)
                         }//.padding(20)
                             
-                        }
+                    }
                             
-                        NavigationLink(destination: CreateDiaryView()){
-                            Circle()
-                                .frame(width: 56,height: 56)
-                                .foregroundColor(.myprimary)
-                                .overlay(Image(systemName: "plus")
-                                    .font(.system(size: 29, weight: .semibold))
-                                    .foregroundColor(.black),alignment: .center)
-                                .padding(.bottom,45)
-                                .padding(.trailing,20)
-                        }
+                    NavigationLink(destination: CreateDiaryView(vm:vm)){
+                        
+                        HStack{
+                            
+                            Spacer()
+                        Circle()
+                            .frame(width: 56,height: 56)
+                            .foregroundColor(.myprimary)
+                            .overlay(Image(systemName: "plus")
+                                .font(.system(size: 29, weight: .semibold))
+                                .foregroundColor(.black),alignment: .center)
+                            .padding(.bottom,45)
+                        .padding(.trailing,20)}
+                    }
                    
                 }
                 

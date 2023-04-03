@@ -18,7 +18,7 @@ struct DayTypeView: View {
             QuestionHeader(title: "몇시에 드셨나요?", order: 1)
             
             Picker("식사 선택", selection: $selectedMeal) {
-                Text("아침").tag(MealType.breakfast)
+                   Text("아침").tag(MealType.breakfast)
                    Text("점심").tag(MealType.lunch)
                    Text("저녁").tag(MealType.dinner)
             }
@@ -32,7 +32,7 @@ struct DayTypeView: View {
             
             
             
-        }.padding(20)
+        }
     }
 }
 

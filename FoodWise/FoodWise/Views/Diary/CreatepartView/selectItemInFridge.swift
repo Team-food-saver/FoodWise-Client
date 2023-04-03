@@ -18,12 +18,11 @@ struct selectItemInFridge: View {
     var body: some View {
         VStack(){
             
-           Spacer()
-                .padding(.bottom, 20)
-            
+           
             ScrollView(showsIndicators: false){
                 selectFridgeListView(selectedItem : $selectedIngredient)
                     .padding(.horizontal,20)
+                
             }
             
             if let item = selectedIngredient{
